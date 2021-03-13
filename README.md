@@ -9,13 +9,13 @@ Este es una API Web para un sistema de preguntas y respuestas, con opcion de vot
 La lista de requerimiento con los que se desarrollo este sistema, fue la siguiente:
 
 - Cuentas de usuario: Deben existir cuentas de usuario que admitan: 
-  - Email
-  - Nombre de usuario
+  - Email (Agregado)
+  - Nombre de usuario (Agregado)
   - Aparte deben existir opciones de: 
-    - Cambiar contraseña
-    - Actualizar informacion
-    - Confirmar correo
-    - Bloqueo de cuentas
+    - Cambiar contraseña (Agregado)
+    - Actualizar informacion (Agregado)
+    - Confirmar correo (Agregado)
+    - Bloqueo de cuentas (Agregado)
 - Categorias: El sistema debe incluir categorias para las preguntas (Completo)
 - Preguntas: El sistema debe incluir la posibilidad de agregar preguntas, exactamente estas incluyen los siguientes datos:  
   - Pregunta (Agregado)
