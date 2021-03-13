@@ -1,4 +1,6 @@
 ﻿using Quicker.Abstracts.Model;
+using Quicker.Interfaces.Model;
+using Repository.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +8,7 @@ using System.Text;
 
 namespace Repository.Models
 {
-    public class Question : AbstractModel<int>
+    public class Question : AbstractModel<int>, IDomainOf<QuestionDTO>
     {
         [Display(Name = "Pregunta"),
          Required(ErrorMessage = "La {0} es obligatoria."), 
