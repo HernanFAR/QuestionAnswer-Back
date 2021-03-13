@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class AnswerService : FullServiceAsync<int, Answer, AnswerDTO>, IAnswerService
+    public class AnswerService : OpenServiceAsync<int, Answer, AnswerDTO>, IAnswerService
     {
         public AnswerService(IServiceProvider service) :
             base(service)
