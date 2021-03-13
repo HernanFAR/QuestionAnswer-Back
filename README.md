@@ -1,16 +1,36 @@
 # QuestionAnswer-Back
 Repositorio de ejemplo que emplea Quicker para su desarrollo :) 
 
+Este es una API Web para un sistema de preguntas y respuestas, con opcion de votos y de cuentas de usuario.
+
+__ En desarrollo __
+
 ## Requerimientos
 La lista de requerimiento con los que se desarrollo este sistema, fue la siguiente:
 
-- Requerimiento 1:
--- Cuentas de usuario: Deben existir cuentas de usuario que admitan: email, nombre de usuario.
---- Aparte, debe de existir la opcion de cambiar contraseña, actualizar informacion, confirmar correo, bloqueo de cuentas
--- Categorias: El sistema debe incluir categorias para las preguntas
--- Preguntas: El sistema debe incluir la posibilidad de agregar preguntas, exactamente estas incluyen los siguientes datos: la pregunta en si, quien la creo, a que categoria pertenece y puntos de la pregunta. Solo los usuarios registrados pueden hacer preguntas.
--- Respuestas: El sistema debe incluir la posibilidad de agregar respuestas a las preguntas. Incluyen los siguientes datos: La respuesta, a que categoria pertenece.
--- Votos: Debe existir la opcion de agregar votos a las preguntas y respuestas. Solo los usuarios registrados pueden votar 
+- Cuentas de usuario: Deben existir cuentas de usuario que admitan: 
+  - Email
+  - Nombre de usuario
+  - Aparte deben existir opciones de: 
+    - Cambiar contraseña
+    - Actualizar informacion
+    - Confirmar correo
+    - Bloqueo de cuentas
+- Categorias: El sistema debe incluir categorias para las preguntas (Completo)
+- Preguntas: El sistema debe incluir la posibilidad de agregar preguntas, exactamente estas incluyen los siguientes datos:  
+  - Pregunta (Agregado)
+  - Creator (Agregado)
+  - Categoria (Agregado)
+  - Solo los usuarios registrados pueden hacer preguntas
+- Respuestas: El sistema debe incluir la posibilidad de agregar respuestas a las preguntas. Incluyen los siguientes datos: 
+  - Respuesta (Agregado)
+  - Creator
+  - Pregunta relacionada (Agregado)
+  - Cualquier usuario, registrado o no, puede hacer respuestas
+    - Pero si no esta registrado, son anonimas, y no es posible eliminarlas o editarlas, salvo que seas administrador.
+- Votos: Debe existir la opcion de agregar votos a las preguntas y respuestas. 
+  - Solo los usuarios registrados pueden votar
+  - Maximo una vez por cuenta.
 
 ## Caracteristicas
 Para el desarrollo de esto, se ha usado
