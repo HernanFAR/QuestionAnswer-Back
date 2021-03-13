@@ -34,6 +34,25 @@ namespace Repository
                     new Category { Id = 5, Name = "Miselaneo" }
                 );
             });
+
+            modelBuilder.Entity<QuestionAnswerUser>(e => 
+            {
+                e.HasData(
+                    new QuestionAnswerUser
+                    {
+                        Id = "",
+                        SecurityStamp = "",
+                        ConcurrencyStamp = "",
+                        Email = "h.f.alvarez.r@gmail.com",
+                        UserName = "Enryu19_",
+                        IsAdmin = true,
+                        LockoutEnabled = true,
+                        NormalizedEmail = "HERNAN.ALVAREZ@AUSTRANET.COM",
+                        NormalizedUserName = "ENRYU19_",
+                        PhoneNumber = "+56 9 4979 8355"
+                    }    
+                );
+            });
         }
     }
 }
