@@ -22,13 +22,5 @@ namespace Repository.Models
 
         [Display(Name = "Votos")]
         public int Votes { get; set; }
-
-        [Display(Name = "Creador"),
-         Required(ErrorMessage = "El {0} es un campo obligatorio.")]
-        public string QuestionAnswerUserId { get; set; }
-
-        public QuestionAnswerUser QuestionAnswerUser { get; set; }
-
-        public ICollection<AnswerVote> AnswerVotes { get; set; }
     }
 }

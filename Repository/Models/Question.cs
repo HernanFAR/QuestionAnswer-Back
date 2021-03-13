@@ -29,7 +29,5 @@ namespace Repository.Models
         public QuestionAnswerUser QuestionAnswerUser { get; set; }
 
         public ICollection<Answer> Answers { get; set; }
-
-        public ICollection<QuestionVote> QuestionVotes { get; set; }
     }
 }

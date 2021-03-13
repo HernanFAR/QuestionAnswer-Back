@@ -13,21 +13,10 @@ namespace Repository
         public QuestionAnswerContext(DbContextOptions<QuestionAnswerContext> options) : 
             base(options) { }
 
-        public QuestionAnswerContext() : 
-            base(CreateOptions()) { }
-        private static DbContextOptions CreateOptions()
-            => new DbContextOptionsBuilder<QuestionAnswerContext>()
-                .UseSqlServer()
-                .Options;
-
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Question> Questions { get; set; }
 
-        public DbSet<QuestionVote> QuestionVotes { get; set; }
-
         public DbSet<Answer> Answers { get; set; }
-
-        public DbSet<AnswerVote> AnswerVotes { get; set; }
     }
 }

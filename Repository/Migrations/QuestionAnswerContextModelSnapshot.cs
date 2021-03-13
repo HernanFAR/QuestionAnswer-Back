@@ -168,10 +168,6 @@ namespace Repository.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("QuestionAnswerUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
@@ -180,46 +176,9 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionAnswerUserId");
-
                     b.HasIndex("QuestionId");
 
                     b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("Repository.Models.AnswerVote", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AnswerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsUp")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("LastUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("QuestionAnswerUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("VoterIp")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AnswerId");
-
-                    b.HasIndex("QuestionAnswerUserId");
-
-                    b.ToTable("AnswerVotes");
                 });
 
             modelBuilder.Entity("Repository.Models.Category", b =>
@@ -350,41 +309,6 @@ namespace Repository.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Repository.Models.QuestionVote", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsUp")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("LastUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("QuestionAnswerUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("VoterIp")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionAnswerUserId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("QuestionVotes");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -438,12 +362,6 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Repository.Models.Answer", b =>
                 {
-                    b.HasOne("Repository.Models.QuestionAnswerUser", "QuestionAnswerUser")
-                        .WithMany()
-                        .HasForeignKey("QuestionAnswerUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Repository.Models.Question", "Question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
@@ -451,25 +369,6 @@ namespace Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Question");
-
-                    b.Navigation("QuestionAnswerUser");
-                });
-
-            modelBuilder.Entity("Repository.Models.AnswerVote", b =>
-                {
-                    b.HasOne("Repository.Models.Answer", "Answer")
-                        .WithMany("AnswerVotes")
-                        .HasForeignKey("AnswerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Repository.Models.QuestionAnswerUser", "QuestionAnswerUser")
-                        .WithMany()
-                        .HasForeignKey("QuestionAnswerUserId");
-
-                    b.Navigation("Answer");
-
-                    b.Navigation("QuestionAnswerUser");
                 });
 
             modelBuilder.Entity("Repository.Models.Question", b =>
@@ -491,28 +390,6 @@ namespace Repository.Migrations
                     b.Navigation("QuestionAnswerUser");
                 });
 
-            modelBuilder.Entity("Repository.Models.QuestionVote", b =>
-                {
-                    b.HasOne("Repository.Models.QuestionAnswerUser", "QuestionAnswerUser")
-                        .WithMany()
-                        .HasForeignKey("QuestionAnswerUserId");
-
-                    b.HasOne("Repository.Models.Question", "Question")
-                        .WithMany("QuestionVotes")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Question");
-
-                    b.Navigation("QuestionAnswerUser");
-                });
-
-            modelBuilder.Entity("Repository.Models.Answer", b =>
-                {
-                    b.Navigation("AnswerVotes");
-                });
-
             modelBuilder.Entity("Repository.Models.Category", b =>
                 {
                     b.Navigation("Questions");
@@ -521,8 +398,6 @@ namespace Repository.Migrations
             modelBuilder.Entity("Repository.Models.Question", b =>
                 {
                     b.Navigation("Answers");
-
-                    b.Navigation("QuestionVotes");
                 });
 
             modelBuilder.Entity("Repository.Models.QuestionAnswerUser", b =>
