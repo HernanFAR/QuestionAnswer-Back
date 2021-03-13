@@ -43,7 +43,7 @@ namespace QuestionAnswer
 
             services.AddControllers();
 
-            services.AddDbContextPool<QuestionAnswerContext>(
+            services.AddDbContext<QuestionAnswerContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("QuestionAnswer"))
             );
 
@@ -58,6 +58,7 @@ namespace QuestionAnswer
                 e.AddProfile<QuestionProfile>();
                 e.AddProfile<AnswerProfile>();
             });
+            services.AddScoped<DbContext>(sp => sp.GetRequiredService<QuestionAnswerContext>());
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IQuestionService, QuestionService>();
             services.AddScoped<IAnswerService, AnswerService>();
