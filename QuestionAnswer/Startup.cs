@@ -52,16 +52,22 @@ namespace QuestionAnswer
                 e.UseLogger = true;
             });
 
+            // Utilities
             services.AddLogging();
             services.AddAutoMapper(e =>
             {
                 e.AddProfile<QuestionProfile>();
                 e.AddProfile<AnswerProfile>();
             });
+            services.AddScoped<IUrlCreator, UrlCreator>();
+            services.AddScoped<IMailService, MailService>();
+
+            // Servicios
             services.AddScoped<DbContext>(sp => sp.GetRequiredService<QuestionAnswerContext>());
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IQuestionService, QuestionService>();
             services.AddScoped<IAnswerService, AnswerService>();
+            services.AddScoped<ILoginService, LoginService>();
 
             services.AddSwaggerGen(c =>
             {
