@@ -27,10 +27,10 @@ namespace Service
         private readonly IConfiguration _Configuration;
         private readonly IMailService _MailService;
         private readonly IUrlCreator _UrlCreator;
-        private readonly ILogger _Logger;
+        private readonly ILogger<LoginService> _Logger;
 
         public LoginService(UserManager<QuestionAnswerUser> userManager, SignInManager<QuestionAnswerUser> signInManager,
-            IConfiguration configuration, IMailService mailService, IUrlCreator urlCreator, ILogger logger)
+            IConfiguration configuration, IMailService mailService, IUrlCreator urlCreator, ILogger<LoginService> logger)
         {
             _UserManager = userManager;
             _SignInManager = signInManager;
