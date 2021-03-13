@@ -185,6 +185,15 @@ namespace Service
             };
         }
 
+        public async Task AddPassword(PasswordData model)
+        {
+            ValidateObjectBeforeCreating(model);
+
+            var user = await FindByEmail(model.Email);
+
+            ThrowIdentityErrorIfNotValid(await _UserManager.AddPasswordAsync(user, model.Password));
+        }
+
         public async Task ResetPassword(ResetPassword model)
         {
             ValidateObjectBeforeCreating(model);

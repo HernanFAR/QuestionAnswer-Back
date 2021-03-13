@@ -25,5 +25,7 @@ namespace Service.Interfaces
         Task UpdateInformation(ChangeInformation model);
 
         Task DeleteUser(string id);
+
+        Task AddPassword(PasswordData model);
     }
 }

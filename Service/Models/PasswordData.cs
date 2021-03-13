@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Service.Models
 {
-    public class ResetPassword
+    public class PasswordData
     {
         [Required(ErrorMessage = "El email es un campo obligatorio")]
         [StringLength(256, MinimumLength = 5, ErrorMessage = "El email debe tener entre 5 y 256 caracteres")]
         [EmailAddress]
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "El token es un obligatorio")]
-        [RegularExpression("^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$",
-            ErrorMessage = "El formato del token no es valido")]
-        public string Token { get; set; }
 
         [Required(ErrorMessage = "La contraseña es un campo obligatorio")]
         public string Password { get; set; }
