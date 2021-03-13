@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Service
 {
-    public class CategoryService : FullServiceAsync<int, Category>, ICategoryService
+    public class CategoryService : CloseServiceAsync<int, Category>, ICategoryService
     {
         public CategoryService(IServiceProvider service) : 
             base(service) { }

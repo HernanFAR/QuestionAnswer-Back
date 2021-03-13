@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Service.Interfaces
 {
-    public interface ICategoryService : IFullServiceAsync<int, Category>
+    public interface ICategoryService : ICloseServiceAsync<int, Category>
     {
     }
 }
