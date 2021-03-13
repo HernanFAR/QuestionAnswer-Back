@@ -40,14 +40,14 @@ namespace Repository
                 e.HasData(
                     new QuestionAnswerUser
                     {
-                        Id = "",
-                        SecurityStamp = "",
-                        ConcurrencyStamp = "",
+                        Id = "ac0bfb48-782b-48f9-b425-20c56f60a59a",
+                        SecurityStamp = "9f8f72f9-7380-4e0a-817e-414f630b7367",
+                        ConcurrencyStamp = "876acc24-639b-47d0-a3aa-b75e1fe94b54",
                         Email = "h.f.alvarez.r@gmail.com",
                         UserName = "Enryu19_",
                         IsAdmin = true,
                         LockoutEnabled = true,
-                        NormalizedEmail = "HERNAN.ALVAREZ@AUSTRANET.COM",
+                        NormalizedEmail = "H.F.ALVAREZ.R@GMAIL.COM",
                         NormalizedUserName = "ENRYU19_",
                         PhoneNumber = "+56 9 4979 8355"
                     }    
