@@ -10,8 +10,8 @@ namespace Repository
 {
     public class QuestionAnswerContext : IdentityDbContext<QuestionAnswerUser, IdentityRole, string>
     {
-        /*public QuestionAnswerContext(DbContextOptions<QuestionAnswerContext> options) : 
-            base(options) { }*/
+        public QuestionAnswerContext(DbContextOptions<QuestionAnswerContext> options) : 
+            base(options) { }
 
         public QuestionAnswerContext() : 
             base(CreateOptions()) { }
