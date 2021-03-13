@@ -43,7 +43,7 @@ namespace QuestionAnswer
 
             services.AddControllers();
 
-            services.AddDbContext<QuestionAnswerContext>(
+            services.AddDbContextPool<QuestionAnswerContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("QuestionAnswer"))
             );
 
