@@ -26,14 +26,14 @@ namespace Service
 
         public Task<IEnumerable<QuestionDTO>> GetTopVoted(int count)
             => FindManyWith(() => Context.Set<Question>()
-                .OrderBy(e => e.Votes)
+                .OrderBy(e => e.UpVotes)
                 .Take(count)
                 .Include(e => e.Category)
                 .AsNoTracking());
 
         public Task<IEnumerable<QuestionDTO>> GetBottomVoted(int count)
             => FindManyWith(() => Context.Set<Question>()
-                .OrderByDescending(e => e.Votes)
+                .OrderBy(e => e.DownVotes)
                 .Take(count)
                 .Include(e => e.Category)
                 .AsNoTracking());

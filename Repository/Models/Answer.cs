@@ -2,6 +2,7 @@
 using Quicker.Interfaces.Model;
 using Repository.DTO;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Repository.Models
@@ -20,7 +21,13 @@ namespace Repository.Models
 
         public Question Question { get; set; }
 
+        public string QuestionAnswerUserId { get; set; }
+
+        public QuestionAnswerUser QuestionAnswerUser { get; set; }
+
         [Display(Name = "Votos")]
         public int Votes { get; set; }
+
+        public ICollection<AnswerVote> AnswerVotes { get; set; }
     }
 }

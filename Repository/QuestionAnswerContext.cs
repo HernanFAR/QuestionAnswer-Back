@@ -20,13 +20,17 @@ namespace Repository
 
         public DbSet<Answer> Answers { get; set; }
 
+        public DbSet<QuestionVote> QuestionVotes { get; set; }
+
+        public DbSet<AnswerVote> AnswerVotes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Category>(e => 
+            modelBuilder.Entity<Category>(entity => 
             {
-                e.HasData(
+                entity.HasData(
                     new Category { Id = 1, Name = "Vida" }, 
                     new Category { Id = 2, Name = "Juegos" }, 
                     new Category { Id = 3, Name = "Amor" }, 
@@ -35,9 +39,9 @@ namespace Repository
                 );
             });
 
-            modelBuilder.Entity<QuestionAnswerUser>(e => 
+            modelBuilder.Entity<QuestionAnswerUser>(entity => 
             {
-                e.HasData(
+                entity.HasData(
                     new QuestionAnswerUser
                     {
                         Id = "ac0bfb48-782b-48f9-b425-20c56f60a59a",
@@ -52,6 +56,30 @@ namespace Repository
                         PhoneNumber = "+56 9 4979 8355"
                     }    
                 );
+            });
+
+            modelBuilder.Entity<QuestionVote>(entity => {
+                entity.HasOne(e => e.Question)
+                    .WithMany(e => e.QuestionVotes)
+                    .HasForeignKey(fk => fk.QuestionId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                entity.HasOne(e => e.QuestionAnswerUser)
+                    .WithMany(e => e.QuestionVotes)
+                    .HasForeignKey(fk => fk.QuestionAnswerUserId)
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
+
+            modelBuilder.Entity<AnswerVote>(entity => {
+                entity.HasOne(e => e.Answer)
+                    .WithMany(e => e.AnswerVotes)
+                    .HasForeignKey(fk => fk.AnswerId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                entity.HasOne(e => e.QuestionAnswerUser)
+                    .WithMany(e => e.AnswerVotes)
+                    .HasForeignKey(fk => fk.QuestionAnswerUserId)
+                    .OnDelete(DeleteBehavior.NoAction);
             });
         }
     }

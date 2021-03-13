@@ -35,8 +35,14 @@ namespace Service.Profile
                     dest.QuestionAnswerUserEmail,
                     opt => opt.MapFrom(src => src.QuestionAnswerUser.Email))
                 .ForMember(dest =>
-                    dest.Votes,
-                    opt => opt.MapFrom(src => src.Votes))
+                    dest.TotalVotes,
+                    opt => opt.MapFrom(src => src.TotalVotes))
+                .ForMember(dest =>
+                    dest.UpVotes,
+                    opt => opt.MapFrom(src => src.UpVotes))
+                .ForMember(dest =>
+                    dest.DownVotes,
+                    opt => opt.MapFrom(src => src.DownVotes))
                 .ForMember(dest =>
                     dest.CreatedAt,
                     opt => opt.MapFrom(src => src.CreatedAt))

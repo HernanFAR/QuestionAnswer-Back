@@ -12,5 +12,11 @@ namespace Repository.Models
         public bool IsAdmin { get; set; }
 
         public ICollection<Question> Questions { get; set; }
+
+        public ICollection<Answer> Answers { get; set; }
+
+        public ICollection<QuestionVote> QuestionVotes { get; set; }
+
+        public ICollection<AnswerVote> AnswerVotes { get; set; }
     }
 }

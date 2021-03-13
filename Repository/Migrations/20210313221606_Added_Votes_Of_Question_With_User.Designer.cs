@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository;
 
 namespace Repository.Migrations
 {
     [DbContext(typeof(QuestionAnswerContext))]
-    partial class QuestionAnswerContextModelSnapshot : ModelSnapshot
+    [Migration("20210313221606_Added_Votes_Of_Question_With_User")]
+    partial class Added_Votes_Of_Question_With_User
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,38 +188,6 @@ namespace Repository.Migrations
                     b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("Repository.Models.AnswerVote", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AnswerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsUpVote")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("LastUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("QuestionAnswerUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AnswerId");
-
-                    b.HasIndex("QuestionAnswerUserId");
-
-                    b.ToTable("AnswerVotes");
-                });
-
             modelBuilder.Entity("Repository.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -244,36 +214,36 @@ namespace Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2021, 3, 13, 19, 24, 57, 277, DateTimeKind.Local).AddTicks(1363),
-                            LastUpdated = new DateTime(2021, 3, 13, 19, 24, 57, 280, DateTimeKind.Local).AddTicks(5164),
+                            CreatedAt = new DateTime(2021, 3, 13, 19, 16, 6, 142, DateTimeKind.Local).AddTicks(8829),
+                            LastUpdated = new DateTime(2021, 3, 13, 19, 16, 6, 145, DateTimeKind.Local).AddTicks(3220),
                             Name = "Vida"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2021, 3, 13, 19, 24, 57, 280, DateTimeKind.Local).AddTicks(7859),
-                            LastUpdated = new DateTime(2021, 3, 13, 19, 24, 57, 280, DateTimeKind.Local).AddTicks(7886),
+                            CreatedAt = new DateTime(2021, 3, 13, 19, 16, 6, 145, DateTimeKind.Local).AddTicks(4778),
+                            LastUpdated = new DateTime(2021, 3, 13, 19, 16, 6, 145, DateTimeKind.Local).AddTicks(4799),
                             Name = "Juegos"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2021, 3, 13, 19, 24, 57, 280, DateTimeKind.Local).AddTicks(7893),
-                            LastUpdated = new DateTime(2021, 3, 13, 19, 24, 57, 280, DateTimeKind.Local).AddTicks(7896),
+                            CreatedAt = new DateTime(2021, 3, 13, 19, 16, 6, 145, DateTimeKind.Local).AddTicks(4802),
+                            LastUpdated = new DateTime(2021, 3, 13, 19, 16, 6, 145, DateTimeKind.Local).AddTicks(4804),
                             Name = "Amor"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2021, 3, 13, 19, 24, 57, 280, DateTimeKind.Local).AddTicks(7901),
-                            LastUpdated = new DateTime(2021, 3, 13, 19, 24, 57, 280, DateTimeKind.Local).AddTicks(7905),
+                            CreatedAt = new DateTime(2021, 3, 13, 19, 16, 6, 145, DateTimeKind.Local).AddTicks(4807),
+                            LastUpdated = new DateTime(2021, 3, 13, 19, 16, 6, 145, DateTimeKind.Local).AddTicks(4809),
                             Name = "Dolores"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2021, 3, 13, 19, 24, 57, 280, DateTimeKind.Local).AddTicks(7909),
-                            LastUpdated = new DateTime(2021, 3, 13, 19, 24, 57, 280, DateTimeKind.Local).AddTicks(7912),
+                            CreatedAt = new DateTime(2021, 3, 13, 19, 16, 6, 145, DateTimeKind.Local).AddTicks(4812),
+                            LastUpdated = new DateTime(2021, 3, 13, 19, 16, 6, 145, DateTimeKind.Local).AddTicks(4814),
                             Name = "Miselaneo"
                         });
                 });
@@ -508,25 +478,6 @@ namespace Repository.Migrations
                     b.Navigation("QuestionAnswerUser");
                 });
 
-            modelBuilder.Entity("Repository.Models.AnswerVote", b =>
-                {
-                    b.HasOne("Repository.Models.Answer", "Answer")
-                        .WithMany("AnswerVotes")
-                        .HasForeignKey("AnswerId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Repository.Models.QuestionAnswerUser", "QuestionAnswerUser")
-                        .WithMany("AnswerVotes")
-                        .HasForeignKey("QuestionAnswerUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Answer");
-
-                    b.Navigation("QuestionAnswerUser");
-                });
-
             modelBuilder.Entity("Repository.Models.Question", b =>
                 {
                     b.HasOne("Repository.Models.Category", "Category")
@@ -551,7 +502,7 @@ namespace Repository.Migrations
                     b.HasOne("Repository.Models.QuestionAnswerUser", "QuestionAnswerUser")
                         .WithMany("QuestionVotes")
                         .HasForeignKey("QuestionAnswerUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Repository.Models.Question", "Question")
@@ -563,11 +514,6 @@ namespace Repository.Migrations
                     b.Navigation("Question");
 
                     b.Navigation("QuestionAnswerUser");
-                });
-
-            modelBuilder.Entity("Repository.Models.Answer", b =>
-                {
-                    b.Navigation("AnswerVotes");
                 });
 
             modelBuilder.Entity("Repository.Models.Category", b =>
@@ -585,8 +531,6 @@ namespace Repository.Migrations
             modelBuilder.Entity("Repository.Models.QuestionAnswerUser", b =>
                 {
                     b.Navigation("Answers");
-
-                    b.Navigation("AnswerVotes");
 
                     b.Navigation("Questions");
 
