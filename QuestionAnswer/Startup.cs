@@ -14,6 +14,9 @@ using Microsoft.OpenApi.Models;
 using QuestionAnswer.Models;
 using Repository;
 using Repository.Models;
+using Service;
+using Service.Interfaces;
+using Service.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +52,21 @@ namespace QuestionAnswer
             services.AddDbContextPool<QuestionAnswerContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("QuestionAnswer"))
             );
+
+            services.AddQuickerConfiguration(e => {
+                e.UseAutoMapper = true;
+                e.UseLogger = true;
+            });
+
+            services.AddLogging();
+            services.AddAutoMapper(e =>
+            {
+                e.AddProfile<QuestionProfile>();
+                e.AddProfile<AnswerProfile>();
+            });
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IQuestionService, QuestionService>();
+            services.AddScoped<IAnswerService, AnswerService>();
 
             services.AddSwaggerGen(c =>
             {
