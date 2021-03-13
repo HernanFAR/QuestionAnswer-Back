@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using QuestionAnswer.Interface;
 using Quicker.Abstracts.Controller;
+using Quicker.Controller.Constants;
 using Repository.DTO;
 using Repository.Models;
 using Service.Interfaces;
@@ -19,6 +20,10 @@ namespace QuestionAnswer.Controllers
             base(service) { }
 
         [HttpGet("bottomVoted/{count}")]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult<IEnumerable<QuestionDTO>>> GetBottomVoted(int count)
         {
             ActionResult<IEnumerable<QuestionDTO>> result;
@@ -41,6 +46,10 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpGet("ofUser/{identityId}")]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult<IEnumerable<QuestionDTO>>> GetOfUser(string identityId)
         {
             ActionResult<IEnumerable<QuestionDTO>> result;
@@ -63,6 +72,10 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpGet("withCategory/{categoryId}")]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult<IEnumerable<QuestionDTO>>> GetQuestionsWithCategory(int categoryId)
         {
             ActionResult<IEnumerable<QuestionDTO>> result;
@@ -85,6 +98,10 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpGet("topVoted/{count}")]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult<IEnumerable<QuestionDTO>>> GetTopVoted(int count)
         {
             ActionResult<IEnumerable<QuestionDTO>> result;

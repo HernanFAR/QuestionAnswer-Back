@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using FluentValidation;
 using System.Linq;
 using System.Threading.Tasks;
+using Quicker.Controller.Constants;
 
 namespace QuestionAnswer.Controllers
 {
@@ -21,13 +22,17 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpPost("register")]
+        [Consumes(ControllerConstants.JsonContentType)]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult<UserCreated>> Register([FromBody] RegisterData model)
         {
             ActionResult<UserCreated> response;
 
             try
             {
-                response = Ok(await _LoginService.RegisterUser(model));
+                response = StatusCode(StatusCodes.Status201Created, await _LoginService.RegisterUser(model));
             }
             catch (ValidationException ex)
             {
@@ -38,6 +43,11 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpPost("authenticate")]
+        [Consumes(ControllerConstants.JsonContentType)]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult<TokenData>> Login([FromBody] LoginSession model)
         {
             ActionResult response;
@@ -61,6 +71,11 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpPatch("update")]
+        [Consumes(ControllerConstants.JsonContentType)]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult<TokenData>> UpdateInformation([FromBody] ChangeInformation model)
         {
             ActionResult response;
@@ -86,6 +101,10 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpPatch("confirmEmail/{userId}")]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult> ConfirmEmail([FromRoute] string userId, [FromQuery] string token)
         {
             ActionResult response;
@@ -118,6 +137,11 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpGet("forgetPassword")]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult> ForgetPassword([FromQuery] string email)
         {
             ActionResult response;
@@ -145,6 +169,11 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpPatch("resetPassword")]
+        [Consumes(ControllerConstants.JsonContentType)]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult> ResetPassword([FromBody] ResetPassword model)
         {
             ActionResult response;
@@ -170,6 +199,12 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpGet("sendConfirmation")]
+        [Consumes(ControllerConstants.JsonContentType)]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult> SendConfirm([FromQuery] string email)
         {
             ActionResult response;
@@ -197,6 +232,12 @@ namespace QuestionAnswer.Controllers
         }
 
         [HttpPatch("sendConfirmation")]
+        [Consumes(ControllerConstants.JsonContentType)]
+        [Produces(ControllerConstants.JsonContentType)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<ActionResult> SendConfirm([FromBody] PasswordData model)
         {
             ActionResult response;
