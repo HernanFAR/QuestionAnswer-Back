@@ -27,7 +27,7 @@ La lista de requerimiento con los que se desarrollo este sistema, fue la siguien
   - Creator
   - Pregunta relacionada (Agregado)
   - Cualquier usuario, registrado o no, puede hacer respuestas
-    - Pero si no esta registrado, son anonimas, y no es posible eliminarlas o editarlas, salvo que seas administrador.
+    - Pero si no esta registrado, son anonimas, y no es posible eliminarlas, salvo que seas administrador.
 - Votos: Debe existir la opcion de agregar votos a las preguntas y respuestas. 
   - Solo los usuarios registrados pueden votar
   - Maximo una vez por cuenta.
