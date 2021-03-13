@@ -22,5 +22,7 @@ namespace QuestionAnswer.Interface
         Task<ActionResult> ResetPassword(ResetPassword model);
 
         Task<ActionResult> SendConfirm(string email);
+
+        Task<ActionResult> AddPassword(PasswordData model);
     }
 }

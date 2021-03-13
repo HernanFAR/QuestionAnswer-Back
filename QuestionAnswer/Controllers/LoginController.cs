@@ -8,11 +8,12 @@ using FluentValidation;
 using System.Linq;
 using System.Threading.Tasks;
 using Quicker.Controller.Constants;
+using QuestionAnswer.Interface;
 
 namespace QuestionAnswer.Controllers
 {
     [Route("api/[controller]")]
-    public class LoginController : ControllerBase
+    public class LoginController : ControllerBase, ILoginController
     {
         private readonly ILoginService _LoginService;
 
@@ -231,14 +232,14 @@ namespace QuestionAnswer.Controllers
             return response;
         }
 
-        [HttpPatch("sendConfirmation")]
+        [HttpPatch("addPassword")]
         [Consumes(ControllerConstants.JsonContentType)]
         [Produces(ControllerConstants.JsonContentType)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
-        public async Task<ActionResult> SendConfirm([FromBody] PasswordData model)
+        public async Task<ActionResult> AddPassword([FromBody] PasswordData model)
         {
             ActionResult response;
 
