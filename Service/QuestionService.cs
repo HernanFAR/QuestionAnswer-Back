@@ -38,5 +38,12 @@ namespace Service
                 .Include(e => e.Category)
                 .AsNoTracking());
 
+        public Task<IEnumerable<QuestionDTO>> GetOfUser(string identityId)
+            => FindManyWith(() => Context.Set<Question>()
+                .OrderBy(e => e.Id)
+                .Include(e => e.Category)
+                .Where(e => e.QuestionAnswerUserId == identityId)
+                .AsNoTracking());
+
     }
 }

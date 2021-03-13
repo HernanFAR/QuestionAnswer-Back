@@ -15,5 +15,7 @@ namespace Service.Interfaces
         Task<IEnumerable<QuestionDTO>> GetTopVoted(int count);
 
         Task<IEnumerable<QuestionDTO>> GetBottomVoted(int count);
+
+        Task<IEnumerable<QuestionDTO>> GetOfUser(string identityId);
     }
 }
