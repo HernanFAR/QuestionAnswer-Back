@@ -24,13 +24,5 @@ namespace Repository.DTO
 
         [Display(Name = "Votos")]
         public int Votes { get; set; }
-
-        [Display(Name = "Creador"),
-         Required(ErrorMessage = "El {0} es un campo obligatorio.")]
-        public string QuestionAnswerUserId { get; set; }
-
-        public string QuestionAnswerUserName { get; set; }
-
-        public string QuestionAnswerUserEmail { get; set; }
     }
 }
