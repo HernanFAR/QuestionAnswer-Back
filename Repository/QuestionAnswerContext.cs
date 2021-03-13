@@ -10,8 +10,15 @@ namespace Repository
 {
     public class QuestionAnswerContext : IdentityDbContext<QuestionAnswerUser, IdentityRole, string>
     {
-        public QuestionAnswerContext(DbContextOptions<QuestionAnswerContext> options) : 
-            base(options) { }
+        /*public QuestionAnswerContext(DbContextOptions<QuestionAnswerContext> options) : 
+            base(options) { }*/
+
+        public QuestionAnswerContext() : 
+            base(CreateOptions()) { }
+        private static DbContextOptions CreateOptions()
+            => new DbContextOptionsBuilder<QuestionAnswerContext>()
+                .UseSqlServer()
+                .Options;
 
         public DbSet<Category> Categories { get; set; }
 
