@@ -3,7 +3,7 @@ Repositorio de ejemplo que emplea Quicker para su desarrollo :)
 
 Este es una API Web para un sistema de preguntas y respuestas, con opcion de votos y de cuentas de usuario.
 
-__ En desarrollo __
+# __En desarrollo__
 
 ## Requerimientos
 La lista de requerimiento con los que se desarrollo este sistema, fue la siguiente:
@@ -40,10 +40,4 @@ Para el desarrollo de esto, se ha usado
 - Quicker
 - AutoMapper
 - DataAnnotations
- 
-## Tiempo de desarrollo
-- Capa de repositorio completada en: 1h25m aprox
-- Capa de servicios completada en: 2h40m aprox
-- Capa de controlador completada en: 3h30m aprox
-- Pulido del codigo completado en: _Pendiente_
-- Test del codigo completado en: _Pendiente_
+
