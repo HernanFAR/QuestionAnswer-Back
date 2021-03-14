@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using QuestionAnswer.Security;
 using Repository;
 using Repository.Models;
 using Service;
@@ -68,6 +69,7 @@ namespace QuestionAnswer
             services.AddScoped<IQuestionService, QuestionService>();
             services.AddScoped<IAnswerService, AnswerService>();
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IUserClaimsPrincipalFactory<QuestionAnswerUser>, ClaimsPrincipalFactory>();
 
             services.AddSwaggerGen(c =>
             {
