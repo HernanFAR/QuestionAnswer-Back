@@ -25,8 +25,14 @@ namespace Repository.Models
 
         public QuestionAnswerUser QuestionAnswerUser { get; set; }
 
-        [Display(Name = "Votos")]
-        public int Votes { get; set; }
+        [Display(Name = "Me gusta")]
+        public int UpVotes { get; set; }
+
+        [Display(Name = "No me gusta")]
+        public int DownVotes { get; set; }
+
+        [Display(Name = "Total de reacciones")]
+        public int TotalVotes { get; set; }
 
         public ICollection<AnswerVote> AnswerVotes { get; set; }
     }
