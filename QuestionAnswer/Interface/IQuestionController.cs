@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 
 namespace QuestionAnswer.Interface
 {
-    public interface IQuestionController : IFullControllerAsync<int, Question, QuestionDTO>
+    public interface IQuestionController : ICloseControllerAsync<int, Question, QuestionDTO>
     {
+        Task<ActionResult<QuestionDTO>> Create(QuestionDTO entity);
+
+        Task<ActionResult> Delete(int key);
+
+        Task<ActionResult<QuestionDTO>> Update(int key, QuestionDTO entity);
+
         Task<ActionResult<IEnumerable<QuestionDTO>>> GetQuestionsWithCategory(int categoryId);
 
         Task<ActionResult<IEnumerable<QuestionDTO>>> GetTopVoted(int count);
