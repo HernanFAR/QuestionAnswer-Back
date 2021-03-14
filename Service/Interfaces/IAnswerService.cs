@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace Service.Interfaces
 {
-    public interface IAnswerService : IOpenServiceAsync<int, Answer, AnswerDTO>
+    public interface IAnswerService : ICloseServiceAsync<int, Answer, AnswerDTO>
     {
+        Task<AnswerDTO> Create(AnswerDTO entity);
+
+        Task Delete(int key, string deleterId);
+
         Task<IEnumerable<AnswerDTO>> GetTopVoted(int count);
 
         Task<IEnumerable<AnswerDTO>> GetBottomVoted(int count);

@@ -10,7 +10,7 @@ namespace Service.Exceptions
 
         public LockedUserException(DateTimeOffset lockedTimeLeft)
         {
-            TimeSpan timeSpan = lockedTimeLeft.DateTime.TimeOfDay;
+            TimeSpan timeSpan = lockedTimeLeft.LocalDateTime.TimeOfDay;
 
             Time = PutZeros(timeSpan.Hours) + ":" + PutZeros(timeSpan.Minutes) + ":" + PutZeros(timeSpan.Seconds);
         }

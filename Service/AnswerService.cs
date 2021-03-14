@@ -16,6 +16,20 @@ namespace Service
             base(service)
         { }
 
+        public async Task Delete(int key, string deleterId)
+        {
+            var deleter = await Context.Set<QuestionAnswerUser>()
+                .FindAsync(deleterId);
+
+            var answer = await Context.Set<Answer>()
+                .FindAsync(key);
+
+            if (!deleter.IsAdmin || answer.QuestionAnswerUserId != deleterId)
+                throw new InvalidOperationException(nameof(answer.QuestionAnswerUserId));
+
+            await base.Delete(key);
+        }
+
         public Task<IEnumerable<AnswerDTO>> GetTopVoted(int count)
             => FindManyWith(() => Context.Set<Answer>()
                 .OrderBy(e => e.Votes)

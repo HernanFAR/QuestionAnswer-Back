@@ -21,6 +21,26 @@ namespace Service
                 .Include(e => e.Category)
                 .AsNoTracking();
 
+        protected override void PresetPropertiesBeforeCreating(Question entity)
+        {
+            entity.TotalVotes = 0;
+            entity.UpVotes = 0;
+            entity.DownVotes = 0;
+        }
+
+        protected override void PresetPropertiesBeforeUpdating(Question updated, Question original)
+        {
+            updated.TotalVotes = original.TotalVotes;
+            updated.UpVotes = original.UpVotes;
+            updated.DownVotes = original.DownVotes;
+        }
+
+        protected override void FilteringEntitiesBeforeUpdating(Question updated, Question original)
+        {
+            if (updated.QuestionAnswerUserId != original.QuestionAnswerUserId)
+                throw new InvalidOperationException(nameof(updated.QuestionAnswerUserId));
+        }
+
         public Task<IEnumerable<QuestionDTO>> GetQuestionsWithCategory(int categoryId)
             => FindManyWith(null, e => e.CategoryId == categoryId);
 
@@ -45,5 +65,15 @@ namespace Service
                 .Where(e => e.QuestionAnswerUserId == identityId)
                 .AsNoTracking());
 
+        public async Task Delete(int key, string deleterId)
+        {
+            var entity = await Context.Set<Question>()
+                .FindAsync(key);
+
+            if (entity.QuestionAnswerUserId != deleterId)
+                throw new InvalidOperationException(nameof(entity.QuestionAnswerUserId));
+
+            await base.Delete(key);
+        }
     }
 }

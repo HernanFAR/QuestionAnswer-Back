@@ -120,11 +120,6 @@ namespace Service
             // Busqueda de ellos en la base de datos
             var user = await FindByEmail(model.Email);
 
-            bool canSignIn = await _SignInManager.CanSignInAsync(user);
-
-            if (!canSignIn)
-                throw new InvalidOperationException(nameof(canSignIn));
-
             SignInResult result = await _SignInManager.PasswordSignInAsync(user, model.Password, true, true);
 
             await ManageSignInResult(result, user.Id);
@@ -337,7 +332,7 @@ namespace Service
             {
                 var user = await FindById(userId);
 
-                throw new WrongPasswordException(user.AccessFailedCount, 5);
+                throw new WrongPasswordException(user.AccessFailedCount, 3);
             }
         }
 
