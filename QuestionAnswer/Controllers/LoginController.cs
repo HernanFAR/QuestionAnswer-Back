@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Quicker.Controller.Constants;
 using QuestionAnswer.Interface;
+using Service.Exceptions;
 
 namespace QuestionAnswer.Controllers
 {
@@ -61,10 +62,20 @@ namespace QuestionAnswer.Controllers
             {
                 response = UnprocessableEntity(ex.Errors);
             }
+            catch (WrongPasswordException ex)
+            {
+                response = StatusCode(StatusCodes.Status406NotAcceptable, ex.TryCount);
+            }
+            catch (LockedUserException ex)
+            {
+                response = StatusCode(StatusCodes.Status409Conflict, ex.Time);
+            }
             catch (InvalidOperationException ex)
             {
                 if (ex.Message == "user")
                     response = NotFound();
+                else if (ex.Message == "IsNotAllowed")
+                    response = StatusCode(StatusCodes.Status409Conflict);
                 else throw;
             }
 
